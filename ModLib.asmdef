@@ -1,0 +1,16 @@
+{
+    "name": "ModLib",
+    "rootNamespace": "PeacefulBeast",
+    "references": [
+        "GUID:7f93dedbc1c086b4282154b20964bec0"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
