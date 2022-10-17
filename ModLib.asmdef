@@ -1,9 +1,7 @@
 {
     "name": "ModLib",
     "rootNamespace": "PeacefulBeast",
-    "references": [
-        "GUID:7f93dedbc1c086b4282154b20964bec0"
-    ],
+    "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

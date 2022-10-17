@@ -1,6 +1,8 @@
-﻿using Tomlet;
-using UnityEngine;
+﻿using System.IO;
 using Newtonsoft.Json;
+using PeacefulBeast.ModLib.Mod;
+using Tomlet;
+using UnityEngine;
 
 namespace PeacefulBeast.ModLib
 {
@@ -61,6 +63,40 @@ namespace PeacefulBeast.ModLib
         }
 
         #endregion
+        
+        #region Mod
+        
+        /// <summary>
+        /// Creates an empty mod folder with default config file if it doesn't exist.
+        /// </summary>
+        public static void CreateEmptyMod(string modName, string path, ConfigFileType configType)
+        {
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
+            else
+            {
+                Debug.LogError($"Mod {modName} already exists!");
+            }
+            var fileName = $"config.{configType.ToString().ToLower()}";
+            if (Exists(Path.Combine(path, fileName)))
+            {
+                System.IO.File.Create(Path.Combine(path, fileName));
+            }
+            else
+            {
+                Debug.LogError($"Config file for mod {modName} already exists!");
+            }
+        }
+
+        public static void CreateEmptyMod<T>(Mod<T> mod) where T : IModConfig
+        {
+            CreateEmptyMod(mod.Config.Name, mod.ModPath, mod.UsedConfigType);
+        }
+        #endregion
+        
+        public static bool Exists(string path) => System.IO.File.Exists(path);
 
         /// <summary>
         /// Creates a Texture from an image file. Image has to be square!

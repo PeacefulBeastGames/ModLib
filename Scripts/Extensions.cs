@@ -16,22 +16,5 @@ namespace PeacefulBeast.ModLib
 
             return sprite;
         }
-
-        /// <summary>
-        /// Return positions of all the 8 neighbours.
-        /// </summary>
-        public static List<Vector2Int> Neighbours(this Vector2Int vector)
-        {
-            var result = new List<Vector2Int>();
-            for (int y = 1; y > -1; y--)
-            {
-                for (int x = -1; x < 1; x++)
-                {
-                    if (x == 0 && y == 0) continue;
-                    result.Add(new Vector2Int(x, y));
-                }
-            }
-            return result;
-        }
     }
 }
