@@ -1,5 +1,5 @@
 {
-    "name": "ModLib",
+    "name": "PeacefulBeast.ModLib",
     "rootNamespace": "PeacefulBeast",
     "references": [],
     "includePlatforms": [],
