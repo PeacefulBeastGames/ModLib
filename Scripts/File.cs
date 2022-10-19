@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using Newtonsoft.Json;
+using PeacefulBeast.ModLib.DataModels;
 using PeacefulBeast.ModLib.Mod;
 using Tomlet;
 using UnityEngine;
@@ -71,18 +72,34 @@ namespace PeacefulBeast.ModLib
         /// </summary>
         public static void CreateEmptyMod(string modName, string path, ConfigFileType configType)
         {
-            if (!Directory.Exists(path))
+            var modPath = Path.Combine(path, modName);
+            if (!Directory.Exists(modPath))
             {
-                Directory.CreateDirectory(path);
+                Directory.CreateDirectory(modPath);
             }
             else
             {
                 Debug.LogError($"Mod {modName} already exists!");
             }
             var fileName = $"config.{configType.ToString().ToLower()}";
-            if (Exists(Path.Combine(path, fileName)))
+            if (!Exists(Path.Combine(modPath, fileName)))
             {
-                System.IO.File.Create(Path.Combine(path, fileName));
+                var modInfo = new ModInfo
+                {
+                    Name = modName,
+                    Version = "0.1.0",
+                    Description = "A mod made with ModLib"
+                };
+                //System.IO.File.Create(Path.Combine(modPath, fileName));
+                switch (configType)
+                {
+                    case ConfigFileType.Json:
+                        SaveJSON(Path.Combine(modPath, fileName), modInfo);
+                        break;
+                    case ConfigFileType.Toml:
+                        SaveTOML(Path.Combine(modPath, fileName), modInfo);
+                        break;
+                }
             }
             else
             {
