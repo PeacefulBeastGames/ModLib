@@ -11,7 +11,7 @@ namespace PeacefulBeast.ModLib.Example
 
         private void Start()
         {
-            CreateEmpty();
+            
         }
 
         private void CreateEmpty()
